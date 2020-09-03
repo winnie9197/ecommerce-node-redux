@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { listProducts } from './actions/productActions';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 
 function HomeScreen(props) {
 	const productList = useSelector(state => state.productList);
