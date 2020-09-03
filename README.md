@@ -1,1 +1,1 @@
-# shopping-template
+# ecommerce-node-template
