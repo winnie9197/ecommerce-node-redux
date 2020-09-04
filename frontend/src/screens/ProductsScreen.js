@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { saveProduct, listProducts } from '../actions/productActions';
+import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
 
 
 function ProductsScreen(props) {
@@ -16,8 +16,10 @@ function ProductsScreen(props) {
   const [description, setDescription] = useState('');
 	const productList = useSelector(state => state.productList);
   const { loading, products, error } = productList;
- 	const productSave = useSelector(state => state.productSave);
- 	const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
+  const productSave = useSelector(state => state.productSave);
+  const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
+ 	const productDelete = useSelector(state => state.productDelete);
+ 	const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
   const dispatch = useDispatch();
 
 	useEffect(() => {	
@@ -28,7 +30,7 @@ function ProductsScreen(props) {
     return () => {
       //
     };
-	}, [successSave]);
+	}, [successSave, successDelete]);
 
 
 	const openModal = (product) => {
@@ -46,11 +48,13 @@ function ProductsScreen(props) {
 		e.preventDefault(); 
 		dispatch(saveProduct({_id: id, name, price, image, brand, category, countInStock, description}));
 	}
-
+  const deleteHandler = (product) => {
+    dispatch(deleteProduct(product._id));
+  };
 	return <div className="content content-margined">
 		<div className="product-header">
 			<h3>Products</h3>
-			<button onClick={()=>openModal({})}>Create Product</button>
+			<button className="button primary" onClick={()=>openModal({})}>Create Product</button>
 		</div>
 	{modalVisible && 
 		<div className="form">
@@ -177,9 +181,7 @@ function ProductsScreen(props) {
                   <button className="button" onClick={() => openModal(product)}>
                     Edit
                   </button>{' '}
-                  <button
-                    className="button"
-                  >
+                  <button className="button" onClick={() => deleteHandler(product)}>
                     Delete
                   </button>
                 </td>
