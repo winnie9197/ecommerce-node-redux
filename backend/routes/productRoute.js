@@ -36,4 +36,25 @@ router.get("/:id", async (req, res) => {
        res.status(404).send({msg: "Product not found."});
 });
 
+router.put("/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    product.name = req.body.name;
+    product.price = req.body.price;
+    product.image = req.body.image;
+    product.brand = req.body.brand;
+    product.category = req.body.category;
+    product.countInStock = req.body.countInStock;
+    product.description = req.body.description;
+
+    const updatedProduct = await product.save();
+    if (updatedProduct) {
+      res.status(200).send( { message: "New Product Created", data: updatedProduct });
+    }
+  }
+  res.status(500).send( { message: "Error in creating product." });
+})
+
+
+
 export default router;
