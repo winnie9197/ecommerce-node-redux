@@ -136,7 +136,7 @@ function ProductsScreen(props) {
 
 	            <li>
 					<button type="submit" className="button primary">
-	                  Create
+	                  {id? "Update": "Create"}
 	                </button>
 				</li>
 				<li>
