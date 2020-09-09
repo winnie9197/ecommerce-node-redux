@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 import { register } from '../actions/userActions';
 
 
-function SigninScreen(props) {
+function RegisterScreen(props) {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [rePassword, setRePassword] = useState("");
 	const userRegister = useSelector(state => state.userRegister);
  	const { loading, userInfo, error } = userRegister;
- 	console.log(error);
     const dispatch = useDispatch();
-
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
 	useEffect(() => {	
@@ -78,4 +76,4 @@ function SigninScreen(props) {
 		  </div>
 }
 
-export default SigninScreen;
+export default RegisterScreen;
