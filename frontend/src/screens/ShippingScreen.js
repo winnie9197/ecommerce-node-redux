@@ -12,7 +12,6 @@ function ShippingScreen(props) {
     const [country, setCountry] = useState('');
 	const userRegister = useSelector(state => state.userRegister);
  	const { loading, userInfo, error } = userRegister;
- 	console.log(error);
     const dispatch = useDispatch();
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
