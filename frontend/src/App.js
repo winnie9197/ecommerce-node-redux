@@ -30,7 +30,7 @@ function App() {
         <header className="header">
               <div className="brand">
                 <button onClick={openMenu}>&#9776;</button>
-                <Link to="/">amazona</Link>
+                <Link to="/">EcomMerce</Link>
               </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
@@ -61,6 +61,7 @@ function App() {
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/signin" component={SigninScreen} />
+          <Route path="/createadmin" component={RegisterScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />

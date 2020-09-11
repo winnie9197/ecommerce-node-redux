@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { register } from '../actions/userActions';
+import { Link, useLocation } from 'react-router-dom';
+import { register, createadmin } from '../actions/userActions';
 
 
 function RegisterScreen(props) {
@@ -14,6 +14,8 @@ function RegisterScreen(props) {
     const dispatch = useDispatch();
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
+    const location = useLocation();
+
 	useEffect(() => {	
 		if (userInfo) {
 			props.history.push("/");
@@ -25,7 +27,12 @@ function RegisterScreen(props) {
 
 	const submitHandler = (e) => {
 		e.preventDefault(); 
-		dispatch(register(name, email, password));
+		console.log(location.pathname);
+		if (location.pathname == "/createadmin") {
+			dispatch(createadmin(name, email, password));
+		} else {
+			dispatch(register(name, email, password));
+		}
 	}
 
 	return <div className="form">
