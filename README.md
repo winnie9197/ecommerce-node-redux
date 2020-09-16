@@ -1,4 +1,5 @@
 # ecommerce-node-redux
+An implementation of Axxxxx's website!
 
 ### Demo
 ![Create Account](https://raw.githubusercontent.com/winnie9197/ecommerce-node-redux/master/frontend/public/images/readme/create-account.png)
